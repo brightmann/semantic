@@ -17,6 +17,10 @@ export const Pagination = ({
   totalPages,
   basePath,
 }: PaginationProps) => {
+  if (totalPages <= 1) {
+    return null;
+  }
+
   const generatePageRange = () => {
     let start = Math.max(1, currentPage - 2);
     let end = Math.min(totalPages, currentPage + 2);
@@ -32,7 +36,7 @@ export const Pagination = ({
 
   const buildPageHref = (page: number) => {
     const path = basePath.replace(TRAILING_SLASH, "");
-    return `${path}?page=${page}`;
+    return page === 1 ? path : `${path}/page/${page}`;
   };
 
   const pageList = generatePageRange();

@@ -25,9 +25,12 @@ const generateSitemapUrls = async (): Promise<MetadataRoute.Sitemap> => {
       const categoryPages = Math.ceil(count / POST.PER_PAGE);
       return [
         { url: `${METADATA.SITE.URL}${ROUTES.CATEGORIES}/${categorySlug}` },
-        ...Array.from({ length: categoryPages }, (_, pageIndex) => ({
-          url: `${METADATA.SITE.URL}${ROUTES.CATEGORIES}/${categorySlug}/p/${pageIndex + 1}`,
-        })),
+        ...Array.from(
+          { length: Math.max(0, categoryPages - 1) },
+          (_, pageIndex) => ({
+            url: `${METADATA.SITE.URL}${ROUTES.CATEGORIES}/${categorySlug}/page/${pageIndex + 2}`,
+          })
+        ),
       ];
     }
   );
@@ -44,8 +47,8 @@ const generateSitemapUrls = async (): Promise<MetadataRoute.Sitemap> => {
     const tagPages = Math.ceil(count / POST.PER_PAGE);
     return [
       { url: `${METADATA.SITE.URL}${ROUTES.TAGS}/${tagSlug}` },
-      ...Array.from({ length: tagPages }, (_, pageIndex) => ({
-        url: `${METADATA.SITE.URL}${ROUTES.TAGS}/${tagSlug}/p/${pageIndex + 1}`,
+      ...Array.from({ length: Math.max(0, tagPages - 1) }, (_, pageIndex) => ({
+        url: `${METADATA.SITE.URL}${ROUTES.TAGS}/${tagSlug}/page/${pageIndex + 2}`,
       })),
     ];
   });
@@ -57,9 +60,12 @@ const generateSitemapUrls = async (): Promise<MetadataRoute.Sitemap> => {
     { url: `${METADATA.SITE.URL}${ROUTES.POSTS}` },
     ...categoryUrls,
     ...tagUrls,
-    ...Array.from({ length: postsPageCount }, (_, pageIndex) => ({
-      url: `${METADATA.SITE.URL}${ROUTES.POSTS}/p/${pageIndex + 1}`,
-    })),
+    ...Array.from(
+      { length: Math.max(0, postsPageCount - 1) },
+      (_, pageIndex) => ({
+        url: `${METADATA.SITE.URL}${ROUTES.POSTS}/page/${pageIndex + 2}`,
+      })
+    ),
     ...posts.map(({ slug, modifiedAt, createdAt }) => ({
       changeFrequency: "monthly",
       lastModified: modifiedAt ?? createdAt,

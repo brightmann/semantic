@@ -7,11 +7,11 @@ export const METADATA = {
     DESCRIPTION: "Make your ✨gorgeous blog with semantic",
     LANGUAGE: "en-US",
     NAME: "semantic",
-    PREVIEW_IMAGE: "https://semantic.nylonbricks.com/static/preview.png",
-    URL: "https://semantic.nylonbricks.com",
+    PREVIEW_IMAGE: "https://semantic.luckypoem.workers.dev/static/preview.png",
+    URL: "https://semantic.luckypoem.workers.dev",
   },
 };
 
 export const POST = {
-  PER_PAGE: 10,
+  PER_PAGE: 5,
 };

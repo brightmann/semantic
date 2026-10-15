@@ -21,7 +21,9 @@ const nextConfig: NextConfig = {
         protocol: "http",
       },
     ],
+    unoptimized: true,
   },
+  output: "export",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
