@@ -7,8 +7,14 @@ export const METADATA = {
     DESCRIPTION: "Make your ✨gorgeous blog with semantic",
     LANGUAGE: "en-US",
     NAME: "semantic",
-    PREVIEW_IMAGE: "https://semantic.luckypoem.workers.dev/static/preview.png",
-    URL: "https://semantic.luckypoem.workers.dev",
+    PREVIEW_IMAGE:
+      process.env.GHPAGES === "1"
+        ? "https://brightmann.github.io/semantic/static/preview.png"
+        : "https://semantic.luckypoem.workers.dev/static/preview.png",
+    URL:
+      process.env.GHPAGES === "1"
+        ? "https://brightmann.github.io/semantic"
+        : "https://semantic.luckypoem.workers.dev",
   },
 };
 
